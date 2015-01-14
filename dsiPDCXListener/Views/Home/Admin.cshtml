@@ -1,0 +1,36 @@
+﻿@model dsiPDCXListener.Models.AdminData
+
+@{
+    ViewBag.Title = "Admin";
+}
+<h2>@ViewBag.Title.</h2>
+<h3>@ViewBag.Message</h3>
+
+@using (Html.BeginForm())
+{
+    <fieldset>
+        <legend>Data</legend>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.PostURL)
+        </div>
+        <div class="editor-field">
+            @Html.TextBoxFor(model => model.PostURL)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.TranDeviceID)
+        </div>
+        <div class="editor-field">
+            @Html.TextBoxFor(model => model.TranDeviceID)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.PostURLMethod)
+        </div>
+        <div class="editor-field">
+            @Html.TextBoxFor(model => model.PostURLMethod)
+        </div>
+    </fieldset>
+    <input type="submit" value="Update" />
+}

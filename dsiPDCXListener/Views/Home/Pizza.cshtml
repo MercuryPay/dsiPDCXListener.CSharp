@@ -1,0 +1,288 @@
+﻿@model dsiPDCXListener.Models.ConfigurationData
+
+@{
+    ViewBag.Title = "Purchase Pizza";
+}
+<h2>@ViewBag.Title.</h2>
+
+<form id="purchaseform" action="" method="post">
+    <p>
+        <label>Amount:</label><input type="text" id="amount" name="amount" value="1.22" /><br />
+        <input type="radio" name="trantype" value="Debit" checked />Debit
+        <br />
+        <input type="radio" name="trantype" value="Credit" />Credit
+        <br />
+        <input type="submit" value="Pay" />
+    </p>
+</form>
+
+<form id="sendform" action="/Home/PurchaseResults" method="post">
+    <input type="hidden" name="mydata" id="mydata" value="" />
+</form>
+
+<script>
+
+    if (!String.prototype.format) {
+        String.prototype.format = function () {
+            var args = arguments;
+            return this.replace(/{(\d+)}/g, function (match, number) {
+                return typeof args[number] != 'undefined'
+                  ? args[number]
+                  : match
+                ;
+            });
+        };
+    }
+
+    function incrementStep(context) {
+        if (context.step != null) {
+            context.step += 1;
+        } else {
+            context.step = 1;
+        }
+        return context;
+    }
+    function printReceipt(context) {
+        context = incrementStep(context);
+
+        var listData = "";
+
+        if (context.listOfStrings != null && context.listOfStrings.length > 0) {
+            if (context.method == "method1") {
+                for (index = 0; index < context.listOfStrings.length; ++index) {
+                    listData += "<Line" + (index + 1) + ">" + context.listOfStrings[index] + "</Line" + (index + 1) + ">";
+                }
+            }
+            else {
+                for (index = 0; index < context.listOfStrings.length; ++index) {
+                    listData += "&Line" + (index + 1) + "=" + context.listOfStrings[index];
+                }
+            }
+        }
+
+        context.data = context.printReceiptMessage.format(context.tranDeviceId, listData);
+        postData(context);
+    }
+
+    function randomIntFromInterval(min,max)
+    {
+        var val = (Math.random() * (max - min) + min).toFixed(2)
+        return val;
+    }
+
+    function printPoleDisplay(context) {
+        var listData = "";
+
+        context = incrementStep(context);
+
+        if (context.listOfStrings != null && context.listOfStrings.length > 0) {
+            if (context.method == "method1") {
+                for (index = 0; index < context.listOfStrings.length; ++index) {
+                    listData += "<Line" + (index + 1) + ">" + context.listOfStrings[index] + "</Line" + (index + 1) + ">";
+                }
+            }
+            else {
+                for (index = 0; index < context.listOfStrings.length; ++index) {
+                    listData += "&Line" + (index + 1) + "=" + context.listOfStrings[index];
+                }
+            }
+        }    
+
+        context.data = context.printPoleDisplayMessage.format(context.tranDeviceId, listData);
+        postData(context);
+    }
+
+    function doCashDrawer(context) {
+        context = incrementStep(context);
+
+        context.data = context.cashDrawerMessage.format(context.tranDeviceId);
+        postData(context);
+    }
+
+    function parseNameValuePair(context) {
+        context.AuthCode = getQueryVariable('AuthCode', context.returnData);
+        context.ResponseOrigin = getQueryVariable('ResponseOrigin', context.returnData);
+        context.DSIXReturnCode = getQueryVariable('DSIXReturnCode', context.returnData);
+        context.CmdStatus = getQueryVariable('CmdStatus', context.returnData);
+        context.TextResponse = getQueryVariable('TextResponse', context.returnData);
+        context.MerchantID = getQueryVariable('MerchantID', context.returnData);
+        context.AcctNo = getQueryVariable('AcctNo', context.returnData);
+        context.TranCode = getQueryVariable('TranCode', context.returnData);
+        context.CaptureStatus = getQueryVariable('CaptureStatus', context.returnData);
+        context.InvoiceNo = getQueryVariable('InvoiceNo', context.returnData);
+        context.Purchase = getQueryVariable('Purchase', context.returnData);
+        context.Authorize = getQueryVariable('Authorize', context.returnData);
+        context.RecordNo = getQueryVariable('RecordNo', context.returnData);
+
+        return context;
+    }
+
+    function parseXmlFromDataCapXML(context) {
+
+        xmlDoc = $.parseXML(context.returnData);
+        $xml = $(xmlDoc);
+        
+        context.AuthCode = $xml.find('AuthCode').text();
+        context.ResponseOrigin = $xml.find('ResponseOrigin').text();
+        context.DSIXReturnCode = $xml.find('DSIXReturnCode').text();
+        context.CmdStatus = $xml.find('CmdStatus').text();
+        context.TextResponse = $xml.find('TextResponse').text();
+        context.MerchantID = $xml.find('MerchantID').text();
+        context.AcctNo = $xml.find('AcctNo').text();
+        context.TranCode = $xml.find('TranCode').text();
+        context.CaptureStatus = $xml.find('CaptureStatus').text();
+        context.InvoiceNo = $xml.find('InvoiceNo').text();
+        context.Purchase = $xml.find('Purchase').text();
+        context.Authorize = $xml.find('Authorize').text();
+        context.RecordNo = $xml.find('RecordNo').text();
+
+        return context;
+    }
+
+    function parseReturnData(context) {
+        if (context.method == "method1") {
+            context = parseXmlFromDataCapXML(context);
+        } else {
+            context = parseNameValuePair(context);
+        }
+
+        return context;
+    }
+
+    function getPaymentData(context) {
+        var paymentData = '';
+        paymentData += 'AuthCode=' + context.AuthCode + '&';
+        paymentData += 'ResponseOrigin=' + context.ResponseOrigin + '&';
+        paymentData += 'DSIXReturnCode=' + context.DSIXReturnCode + '&';
+        paymentData += 'CmdStatus=' + context.CmdStatus + '&';
+        paymentData += 'TextResponse=' + context.TextResponse + '&';
+        paymentData += 'MerchantID=' + context.MerchantID + '&';
+        paymentData += 'AcctNo=' + context.AcctNo + '&';
+        paymentData += 'TranCode=' + context.TranCode + '&';
+        paymentData += 'CaptureStatus=' + context.CaptureStatus + '&';
+        paymentData += 'InvoiceNo=' + context.InvoiceNo + '&';
+        paymentData += 'Purchase=' + context.Purchase + '&';
+        paymentData += 'Authorize=' + context.Authorize + '&';
+        paymentData += 'RecordNo=' + context.RecordNo;
+
+        return paymentData;
+    }
+
+    function postData(context) {
+        alert(context.data);
+
+        var posting = $.ajax({
+            type: "POST",
+            url: context.url,
+            data: context.data,
+            contentType: context.contentType,
+        });
+        posting.done(function (data) {
+            context.returnData = data;
+            process(context);
+        });
+        posting.error(function (xhr, textStatus, errorThrown) {
+            alert(xhr.responseText);
+        });
+    }
+
+    function doSale(context) {
+        context = incrementStep(context);
+        context.data = context.saleMessage.format(context.tranDeviceId, context.trantype, context.amount.toString());
+        postData(context);
+    }
+
+    function getQueryVariable(variable, queryString) {
+        var vars = queryString.split('&');
+        for (var i = 0; i < vars.length; i++) {
+            var pair = vars[i].split('=');
+            if (decodeURIComponent(pair[0]) == variable) {
+                return decodeURIComponent(pair[1]);
+            }
+        }
+    }
+
+    function process(context) {
+        if (context.step == null) {
+            alert('clear pole display');
+            printPoleDisplay(context); //clear display
+        }
+        else if (context.step == 1) {
+            alert('print total amount due');
+            context.listOfStrings = [".Total Amount Due", "." + context.amount.toString()];
+            printPoleDisplay(context); //print amount tendered
+        }
+        else if (context.step == 2) {
+            alert('do peripheral work');
+            doSale(context);
+        }
+        else if (context.step == 3) {
+            context = parseReturnData(context);
+            context.paymentData = getPaymentData(context);
+            
+            alert('print approved/declined');
+            var amt = "." + context.amount.toString();
+
+            if (context.CmdStatus == 'Approved') {
+                context.listOfStrings = [".Approved", amt];
+            }
+            else {
+                context.listOfStrings = [".Declined", context.TextResponse];
+            }
+
+            printPoleDisplay(context); //print approved or declined to pole display
+        }
+        else if (context.step == 4) {
+            alert('print receipt');
+            var amt = ".Amount:" + context.amount.toString();
+            var merchantName = "." + context.merchantName;
+            var merchantAddress = "." + context.merchantAddress;
+            var merchantCityStatePostalCode = "." + context.merchantCity + ", " + context.merchantState + "  " + context.merchantPostalCode;
+            var authCode = ".AuthCode=" + context.AuthCode;
+            var acctNo = ".AcctNo=" + context.AcctNo;
+            var textResponse = ".Response=" + context.TextResponse;
+
+            context.listOfStrings = [merchantName, merchantAddress, merchantCityStatePostalCode, authCode, acctNo, amt, textResponse];
+            printReceipt(context); //print receipt
+        }
+        else if (context.step == 5) {
+            alert('print have a nice day to pole display');
+            context.listOfStrings = [".Have a great day!"];
+            printPoleDisplay(context); //print have a good day
+        }
+        else if (context.step == 6) {
+            alert('open cash drawer');
+            doCashDrawer(context); //open cash drawer
+        }
+        else if (context.step == 7) {
+            //finally show the information to the POS Operator.
+            $("#mydata").val(context.paymentData);
+            $("#sendform").submit();
+        }        
+    }
+
+    // Attach a submit handler to the form
+    $("#purchaseform").submit(function (event) {
+        event.preventDefault();                        
+        var context = new Object();
+        context.amount = $("#amount").val();
+        context.trantype = $('input:radio[name=trantype]:checked').val();
+        context.merchantName = '@Model.MerchantName';
+        context.merchantAddress = '@Model.MerchantAddress';
+        context.merchantCity = '@Model.MerchantCity';
+        context.merchantState = '@Model.MerchantState';
+        context.merchantPostalCode = '@Model.MerchantPostalCode';
+        context.merchantId = '@Model.MerchantID';
+        context.url = '@Model.PostURL@Model.PostURLMethod';
+        context.tranDeviceId = '@Model.TranDeviceID';
+        context.method = '@Model.PostURLMethod';
+        context.step = null;
+        context.printReceiptMessage = '@Html.Raw(Model.PrintReceiptMessage)';
+        context.printPoleDisplayMessage = '@Html.Raw(Model.PrintPoleDisplayMessage)';
+        context.cashDrawerMessage = '@Html.Raw(Model.CashDrawerMessage)';
+        context.saleMessage = '@Html.Raw(Model.SaleMessage)';
+        context.contentType = '@Html.Raw(Model.ContentType)';
+        process(context);
+    });
+</script>
+
