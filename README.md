@@ -1,7 +1,7 @@
 dsiPDCXListener.CSharp
 ==========
 
-==Overview
+##Overview
 
 This repository demonstrates the ability to interact with local peripherals while hosting your POS application in the cloud.  There are two "tricks":
 
@@ -10,14 +10,13 @@ This repository demonstrates the ability to interact with local peripherals whil
 
 An example site is hosted here:  durangopizza.azurewebsites.net.  This site demonstrates the use of two DataCap technologies:  the dsiPDCXListener and the IPTranLT Mobile.  Visit the site using your favorite web browser and then click the 'Admin' link.  Enter the IP address and port where the dsiPDCXListener is running and then enter your TranDeviceID that you will find on the IPTranLT Mobile.  Finally press the 'Update' button and then purchase some pizza.  The javascript will execute driving the pole display, peripheral device, receipt printer, and cash drawer for a full integrated payment experience.
 
-==Prerequisites
+##Prerequisites
 
 * dsiPDCXListener installed and running -- you can obtain this software from your DataCap representative
 * IPTranLT Mobile -- this is a hardware device you can also obtain from your DataCap representative.  With a few tweaks this example could also run without the IPTranLT Mobile.
 * A cash drawer, receipt printer, and peripheral device that will all attach to the IPTranLT Mobile.  As mentioned above with a few tweaks you could run this demo with only a peripheral device attached direclty to the computer with the dsiPDCXListener.
-* 
 
-==Step 1: Display a payment page
+##Step 1: Display a payment page
 
 In our case the payment page is fairly simple.  It contains an amount text box, an option for credit or debit, and a submit button.
 
@@ -34,7 +33,7 @@ In our case the payment page is fairly simple.  It contains an amount text box, 
 </form>
 ```
 
-==Step 2:Capture submit event and POST to listener
+##Step 2:Capture submit event and POST to listener
 
 When the user presses the 'Pay' button above we capture the event in javascript and initiate the process of sending transactions by posting to the dsiPDCXListener via javascript.  You will see in the code (the Pizza.cshtml page) that the process function kicks off the process and a context object provides state data for all of the javascript functions.  The postData function is actually where the data is posted to the listener.
 
