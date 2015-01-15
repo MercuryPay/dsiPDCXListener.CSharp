@@ -8,7 +8,9 @@ This repository demonstrates the ability to interact with local peripherals whil
 * dsiPDCXListener which provides the ability to send http commands that drive peripheral devices
 * A little bit of javascript that makes the http calls to the dsiPDCXListener
 
-An example site is hosted here:  durangopizza.azurewebsites.net.  This site demonstrates the use of two DataCap technologies:  the dsiPDCXListener and the IPTranLT Mobile.  Visit the site using your favorite web browser and then click the 'Admin' link.  Enter the IP address and port where the dsiPDCXListener is running and then enter your TranDeviceID that you will find on the IPTranLT Mobile.  Finally press the 'Update' button and then purchase some pizza.  The javascript will execute driving the pole display, peripheral device, receipt printer, and cash drawer for a full integrated payment experience.
+An example site is hosted here:  http://durangopizza.azurewebsites.net.
+
+This site demonstrates the use of two DataCap technologies:  the dsiPDCXListener and the IPTranLT Mobile.  Visit the site using your favorite web browser and then click the 'Admin' link.  Enter the IP address and port where the dsiPDCXListener is running and then enter your TranDeviceID that you will find on the IPTranLT Mobile.  Finally press the 'Update' button and then purchase some pizza.  The javascript will execute driving the pole display, peripheral device, receipt printer, and cash drawer for a full integrated payment experience.
 
 ##Prerequisites
 
