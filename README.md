@@ -33,9 +33,9 @@ In our case the payment page is fairly simple.  It contains an amount text box, 
 </form>
 ```
 
-##Step 2:Capture submit event and POST to listener
+##Step 2:Capture submit event and POST to dsiPDCXListener
 
-When the user presses the 'Pay' button above we capture the event in javascript and initiate the process of sending transactions by posting to the dsiPDCXListener via javascript.  You will see in the code (the Pizza.cshtml page) that the process function kicks off the process and a context object provides state data for all of the javascript functions.  The postData function is actually where the data is posted to the listener.
+When the user presses the 'Pay' button above we capture the event in javascript and initiate the process of sending transactions by posting to the dsiPDCXListener via javascript.  You will see in the code (the Pizza.cshtml page) that the process function kicks off the process and a context object provides state data for all of the javascript functions.  The postData function is actually where the data is posted to the dsiPDCXListener.
 
 You can see below that the url is included in the context object as is the actual data to post.  That is so that everything is configurable, these values are written to the page when the server sends the page down to the client.
 
@@ -59,7 +59,7 @@ function postData(context) {
 }
 ```
 
-The data that is POSTed to the listener is the familiar DataCap XML with a few modifications.  The XML below is used to write to the PoleDisplay.  The {0} is filled in at runtime by the TranDeviceID configured in the Admin screen mentioned above.  The {1} is filled in at runtime with the list of data to write to the PoleDisplay and looks like:  <Line1>.Write to Pole Display</Line1>.  You can write multiple lines to the PoleDisplay via additional <Line#> elements.
+The data that is POSTed to the dsiPDCXListener is the familiar DataCap XML with a few modifications.  The XML below is used to write to the PoleDisplay.  The {0} is filled in at runtime by the TranDeviceID configured in the Admin screen mentioned above.  The {1} is filled in at runtime with the list of data to write to the PoleDisplay and looks like:  <Line1>.Write to Pole Display</Line1>.  You can write multiple lines to the PoleDisplay via additional <Line#> elements.
 
 ```
 <?xml version=\"1.0\"?>
@@ -77,7 +77,7 @@ The data that is POSTed to the listener is the familiar DataCap XML with a few m
 
 ##Step 3: Parse Response
 
-Depending on which listener method you are POSTing to the parsing mechanism will change.  For example if you are using method1 that means you are sending/receiving DataCap XML and therefore you will need to send and parse DataCap XML.  Here's sample javascript that shows parsing the response returned by the dsiPDCXListener into the context javascript object.
+Depending on which dsiPDCXListener method you are POSTing to the parsing mechanism will change.  For example if you are using method1 that means you are sending/receiving DataCap XML and therefore you will need to send and parse DataCap XML.  Here's sample javascript that shows parsing the response returned by the dsiPDCXListener into the context javascript object.
 
 ```
     function parseXmlFromDataCapXML(context) {
