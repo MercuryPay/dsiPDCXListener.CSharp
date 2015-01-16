@@ -3,7 +3,7 @@ dsiPDCXListener.CSharp
 
 ##Overview
 
-This repository demonstrates the ability to interact with local peripherals while hosting your POS application in the cloud.  There are two "tricks":
+This repository demonstrates the ability to interact with local peripherals while hosting your POS application in the cloud.  There are two key attributes that facilitate this SAAS model:
 
 * The dsiPDCXListener provides the ability to send http commands that drive peripheral devices
 * A little bit of javascript that makes the http calls to the dsiPDCXListener
