@@ -179,16 +179,25 @@
         });
         posting.done(function (data) {
             context.returnData = data;
-            process(context);
+
+            if (context.tranDeviceId == '') {
+                processSale(context);
+            } else {
+                process(context);
+            }
         });
         posting.error(function (xhr, textStatus, errorThrown) {
             alert(xhr.responseText);
         });
     }
 
-    function doSale(context) {
+    function doSale(context, encodeData) {
         context = incrementStep(context);
-        context.data = context.saleMessage.format(context.tranDeviceId, context.trantype, context.amount.toString());
+        context.data = context.saleMessage.format(context.tranDeviceId, context.trantype, context.merchantId, context.comPort, context.secureDevice, context.amount.toString(), context.recordNoFrequency);
+        if (encodeData) {
+            context.data = encodeURI(context.data);
+        }
+
         postData(context);
     }
 
@@ -199,6 +208,19 @@
             if (decodeURIComponent(pair[0]) == variable) {
                 return decodeURIComponent(pair[1]);
             }
+        }
+    }
+
+    function processSale(context) {
+        if (context.step == null) {
+            alert('do peripheral work');
+            doSale(context, true);
+        } else if (context.step == 1) {
+            context = parseReturnData(context);
+            context.paymentData = getPaymentData(context);
+
+            $("#mydata").val(context.paymentData);
+            $("#sendform").submit();
         }
     }
 
@@ -214,7 +236,7 @@
         }
         else if (context.step == 2) {
             alert('do peripheral work');
-            doSale(context);
+            doSale(context, false);
         }
         else if (context.step == 3) {
             context = parseReturnData(context);
@@ -274,15 +296,23 @@
         context.merchantPostalCode = '@Model.MerchantPostalCode';
         context.merchantId = '@Model.MerchantID';
         context.url = '@Model.PostURL@Model.PostURLMethod';
-        context.tranDeviceId = '@Model.TranDeviceID';
+        context.tranDeviceId = '@Html.Raw(Model.TranDeviceID)';
         context.method = '@Model.PostURLMethod';
+        context.comPort = '@Model.ComPort';
+        context.secureDevice = '@Model.SecureDevice';
+        context.recordNoFrequency = '@Html.Raw(Model.IncludeRecordNoAndFrequency)';
         context.step = null;
         context.printReceiptMessage = '@Html.Raw(Model.PrintReceiptMessage)';
         context.printPoleDisplayMessage = '@Html.Raw(Model.PrintPoleDisplayMessage)';
         context.cashDrawerMessage = '@Html.Raw(Model.CashDrawerMessage)';
         context.saleMessage = '@Html.Raw(Model.SaleMessage)';
         context.contentType = '@Html.Raw(Model.ContentType)';
-        process(context);
+
+        if (context.tranDeviceId == '') {
+            processSale(context);
+        } else {
+            process(context);
+        }
     });
 </script>
 

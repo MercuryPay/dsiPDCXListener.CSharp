@@ -31,6 +31,34 @@
         <div class="editor-field">
             @Html.TextBoxFor(model => model.PostURLMethod)
         </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.ComPort)
+        </div>
+        <div class="editor-field">
+            @Html.TextBoxFor(model => model.ComPort)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.SecureDevice)
+        </div>
+        <div class="editor-field">
+            @Html.TextBoxFor(model => model.SecureDevice)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.MerchantID)
+        </div>
+        <div class="editor-field">
+            @Html.TextBoxFor(model => model.MerchantID)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.IncludeRecordNoAndFrequency)
+        </div>
+        <div class="editor-field">
+            @Html.TextBoxFor(model => model.IncludeRecordNoAndFrequency)
+        </div>
     </fieldset>
     <input type="submit" value="Update" />
 }

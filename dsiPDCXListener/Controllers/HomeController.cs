@@ -29,11 +29,15 @@ namespace dsiPDCXListener.Controllers
 
         public ActionResult Admin(dsiPDCXListener.Models.AdminData adminData)
         {
-            if (adminData != null && (adminData.PostURL != null && adminData.TranDeviceID != null && adminData.PostURLMethod != null))
+            if (adminData != null && (adminData.ComPort != null || adminData.PostURL != null || adminData.PostURLMethod != null || adminData.SecureDevice != null && adminData.TranDeviceID != null || adminData.MerchantID != null))
             {
-                HttpContext.Application["TranDeviceID"] = adminData.TranDeviceID;
+                HttpContext.Application["TranDeviceID"] = (adminData.TranDeviceID == null) ? "" : adminData.TranDeviceID;
                 HttpContext.Application["PostURL"] = adminData.PostURL;
                 HttpContext.Application["PostURLMethod"] = adminData.PostURLMethod;
+                HttpContext.Application["ComPort"] = adminData.ComPort;
+                HttpContext.Application["SecureDevice"] = adminData.SecureDevice;
+                HttpContext.Application["MerchantID"] = adminData.MerchantID;
+                HttpContext.Application["IncludeRecordNoAndFrequency"] = adminData.IncludeRecordNoAndFrequency;
 
                 return Redirect("/");
             }
@@ -43,6 +47,10 @@ namespace dsiPDCXListener.Controllers
                 theAdminData.PostURL = HttpContext.Application["PostURL"].ToString();
                 theAdminData.TranDeviceID = HttpContext.Application["TranDeviceID"].ToString();
                 theAdminData.PostURLMethod = HttpContext.Application["PostURLMethod"].ToString();
+                theAdminData.ComPort = HttpContext.Application["ComPort"].ToString();
+                theAdminData.SecureDevice = HttpContext.Application["SecureDevice"].ToString();
+                theAdminData.MerchantID = HttpContext.Application["MerchantID"].ToString();
+                theAdminData.IncludeRecordNoAndFrequency = (bool)(HttpContext.Application["IncludeRecordNoAndFrequency"]);
 
                 return View(theAdminData);
             }
@@ -56,14 +64,15 @@ namespace dsiPDCXListener.Controllers
 
             var configData = new dsiPDCXListener.Models.ConfigurationData();
             configData.MerchantAddress = config.MerchantAddress;
-            configData.MerchantCity = config.MerchantCity;
-            configData.MerchantID = config.MerchantID;
+            configData.MerchantCity = config.MerchantCity;            
             configData.MerchantName = config.MerchantName;
             configData.MerchantPostalCode = config.MerchantPostalCode;
             configData.MerchantState = config.MerchantState;
             configData.PostURL = HttpContext.Application["PostURL"].ToString();
             configData.PostURLMethod = HttpContext.Application["PostURLMethod"].ToString();
-            configData.TranDeviceID = HttpContext.Application["TranDeviceID"].ToString();
+            configData.ComPort = HttpContext.Application["ComPort"].ToString();
+            configData.SecureDevice = HttpContext.Application["SecureDevice"].ToString();
+            configData.MerchantID = HttpContext.Application["MerchantID"].ToString();         
 
             if (configData.PostURLMethod == "method1")
             {
@@ -72,6 +81,17 @@ namespace dsiPDCXListener.Controllers
                 configData.CashDrawerMessage = config.CashDrawerMessageMethod1;
                 configData.SaleMessage = config.SaleMessageMethod1;
                 configData.ContentType = config.ContentTypeMethod1;
+
+                configData.TranDeviceID = (HttpContext.Application["TranDeviceID"].ToString().Length == 0) ? string.Empty : "<TranDeviceID>" + HttpContext.Application["TranDeviceID"].ToString() + "</TranDeviceID>";
+
+                if ((bool)(HttpContext.Application["IncludeRecordNoAndFrequency"]))
+                {
+                    configData.IncludeRecordNoAndFrequency = config.RecordNoFrequencyMethod1;
+                }
+                else
+                {
+                    configData.IncludeRecordNoAndFrequency = string.Empty;
+                }
             }
             else
             {
@@ -80,9 +100,19 @@ namespace dsiPDCXListener.Controllers
                 configData.CashDrawerMessage = config.CashDrawerMessageMethod4;
                 configData.SaleMessage = config.SaleMessageMethod4;
                 configData.ContentType = config.ContentTypeMethod4;
+
+                configData.TranDeviceID = (HttpContext.Application["TranDeviceID"].ToString().Length == 0) ? string.Empty : "TranDeviceID=" + HttpContext.Application["TranDeviceID"].ToString() + "&";
+
+                if ((bool)(HttpContext.Application["IncludeRecordNoAndFrequency"]))
+                {
+                    configData.IncludeRecordNoAndFrequency = config.RecordNoFrequencyMethod4;
+                }
+                else
+                {
+                    configData.IncludeRecordNoAndFrequency = string.Empty;
+                }
             }
  
-
             return View(configData);
         }
 
@@ -96,12 +126,15 @@ namespace dsiPDCXListener.Controllers
             var configData = new dsiPDCXListener.Models.ConfigurationData();
             configData.MerchantAddress = config.MerchantAddress;
             configData.MerchantCity = config.MerchantCity;
-            configData.MerchantID = config.MerchantID;
             configData.MerchantName = config.MerchantName;
             configData.MerchantPostalCode = config.MerchantPostalCode;
             configData.MerchantState = config.MerchantState;
             configData.PostURL = HttpContext.Application["PostURL"].ToString();
             configData.TranDeviceID = HttpContext.Application["TranDeviceID"].ToString();
+            configData.ComPort = HttpContext.Application["ComPort"].ToString();
+            configData.SecureDevice = HttpContext.Application["SecureDevice"].ToString();
+            configData.MerchantID = HttpContext.Application["MerchantID"].ToString();
+
 
             var paymentResponseData = new dsiPDCXListener.Models.PaymentResponseData();
             paymentResponseData.AcctNo = nvc["AcctNo"];

@@ -22,6 +22,11 @@ namespace dsiPDCXListener
             Application["TranDeviceID"] = config.TranDeviceID;
             Application["PostURL"] = config.PostURL;
             Application["PostURLMethod"] = config.PostURLMethod;
+            Application["ComPort"] = config.ComPort;
+            Application["SecureDevice"] = config.SecureDevice;
+            Application["MerchantID"] = config.MerchantID;
+            Application["IncludeRecordNoAndFrequency"] = false;
+
         }
     }
 }

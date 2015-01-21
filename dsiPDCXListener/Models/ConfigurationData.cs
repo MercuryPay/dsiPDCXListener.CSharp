@@ -27,6 +27,9 @@ namespace dsiPDCXListener.Models
         public string CashDrawerMessage { get; set; }
         public string SaleMessage { get; set; }
         public string ContentType { get; set; }
+        public string ComPort { get; set; }
+        public string SecureDevice { get; set; }
+        public string IncludeRecordNoAndFrequency { get; set; }
 
     }
 }
