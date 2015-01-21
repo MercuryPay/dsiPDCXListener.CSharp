@@ -67,17 +67,17 @@ namespace dsiPDCXListener.Infrastructure
 
         public string PrintReceiptMessageMethod4
         {
-            get { return "{0}TranCode=PrintReceipt&OperatorID=danotest&MerchantID=NONE&ComPort=0&TStream=Admin&SecureDevice=NONE{1}"; }
+            get { return "{0}TranCode=PrintReceipt&OperatorID=test&MerchantID=NONE&ComPort=0&TStream=Admin&SecureDevice=NONE{1}"; }
         }
 
         public string PrintPoleDisplayMessageMethod4
         {
-            get {return "{0}TranCode=PoleDisplay&OperatorID=danotest&MerchantID=NONE&ComPort=0&TStream=Admin&SecureDevice=NONE{1}";}
+            get {return "{0}TranCode=PoleDisplay&OperatorID=test&MerchantID=NONE&ComPort=0&TStream=Admin&SecureDevice=NONE{1}";}
         }
 
         public string CashDrawerMessageMethod4
         {
-            get {return "{0}TranCode=DrawerOpen&OperatorID=danotest&MerchantID=494901&ComPort=0&TStream=Admin&SecureDevice=ONTRAN";}
+            get {return "{0}TranCode=DrawerOpen&OperatorID=test&MerchantID=494901&ComPort=0&TStream=Admin&SecureDevice=ONTRAN";}
         }
 
         public string SaleMessageMethod4
@@ -102,7 +102,7 @@ namespace dsiPDCXListener.Infrastructure
 
         public string SaleMessageMethod1
         {
-            get { return "<?xml version=\"1.0\"?><TStream><Transaction>{0}<TranType>{1}</TranType><MerchantID>{2}</MerchantID><ComPort>{3}</ComPort><SecureDevice>{4}</SecureDevice><OperatorID>danotest</OperatorID><TranCode>Sale</TranCode><InvoiceNo>123</InvoiceNo><RefNo>123</RefNo><Account><AcctNo>SecureDevice</AcctNo></Account><Purchase>{5}</Purchase>{6}</Transaction></TStream>"; }
+            get { return "<?xml version=\"1.0\"?><TStream><Transaction>{0}<TranType>{1}</TranType><MerchantID>{2}</MerchantID><ComPort>{3}</ComPort><SecureDevice>{4}</SecureDevice><OperatorID>test</OperatorID><TranCode>Sale</TranCode><InvoiceNo>123</InvoiceNo><RefNo>123</RefNo><Account><AcctNo>SecureDevice</AcctNo></Account><Purchase>{5}</Purchase>{6}</Transaction></TStream>"; }
         }
 
         public string RecordNoFrequencyMethod1
