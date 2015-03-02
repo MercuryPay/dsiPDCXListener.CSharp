@@ -19,7 +19,7 @@ Please contact your IntegrationTeam member for any questions about the below pre
 
 ##Example Site
 
-An example site is hosted here:  <a href="http://durangopizza.azurewebsites.net" target="_blank">http://durangopizza.azurewebsites.net</a>
+An example site is hosted here:  <a href="http://durangopizza.azurewebsites.net" target="_blank">Durango Pizza Azure Website</a>
 
 This site demonstrates the use of two DataCap technologies:  the dsiPDCXListener and the IPTranLT Mobile.  Visit the site using your favorite web browser and then click the 'Admin' link.  Enter the IP address and port where the dsiPDCXListener is running and then enter your TranDeviceID that you will find on the IPTranLT Mobile device.  Finally press the 'Update' button and then purchase some pizza.  The javascript will execute driving the pole display, peripheral device, receipt printer, and cash drawer for a full integrated payment experience.
 
