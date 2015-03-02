@@ -15,11 +15,11 @@ Please contact your IntegrationTeam member for any questions about the below pre
 * dsiPDCXListener installed and running
 * IPTranLT Mobile -- this is a hardware device to which hardware peripherals can/will attach.
 * A cash drawer, receipt printer, and peripheral device that will all attach to the IPTranLT Mobile.
-* The code will also work with the dsiPDCXListener and a hardware device attached directly to the computer so if you do not have the IPTranLT Mobile and other hardware devices (cash drawern, receipt printer, etc.) you will still be able to see the functionality.
+* The code will also work with the dsiPDCXListener and a hardware device attached directly to the computer so if you do not have the IPTranLT Mobile and other hardware devices (cash drawer, receipt printer, etc.) you will still be able to see the functionality.
 
 ##Example Site
 
-An example site is hosted here:  http://durangopizza.azurewebsites.net.
+An example site is hosted here:  <a href="http://durangopizza.azurewebsites.net" target="_blank">http://durangopizza.azurewebsites.net</a>
 
 This site demonstrates the use of two DataCap technologies:  the dsiPDCXListener and the IPTranLT Mobile.  Visit the site using your favorite web browser and then click the 'Admin' link.  Enter the IP address and port where the dsiPDCXListener is running and then enter your TranDeviceID that you will find on the IPTranLT Mobile device.  Finally press the 'Update' button and then purchase some pizza.  The javascript will execute driving the pole display, peripheral device, receipt printer, and cash drawer for a full integrated payment experience.
 
@@ -28,6 +28,8 @@ As an alternative you can modify the other fields on the Admin page to allow thi
 The azure website is active for 15 minutes and then after 15 minutes of no activity it will recyle and reset the Admin settings back to the default.
 
 ##Step 1: Display a payment page
+
+These steps show the generic path to processing transactions using the durangopizza.azurewebsites.net site as an example.
 
 In our case the payment page is fairly simple.  It contains an amount text box, an option for credit or debit, and a submit button.
 
@@ -88,7 +90,7 @@ The data that is POSTed to the dsiPDCXListener is familiar XML with a few modifi
 
 ##Step 3: Parse Response
 
-The parsing mechanism will change depending on which dsiPDCXListener method you use.  There are four differnt methods supported by the dsiPDCXListener (method1, method2, method3, method4 -- these are the actual names).  For example if you are using method1 that means you are sending/receiving XML and therefore you will need to send and parse XML.  Here's sample javascript that shows parsing the response returned by the dsiPDCXListener into the context javascript object.
+The parsing mechanism will change depending on which dsiPDCXListener method you use.  There are four differnt methods supported by the dsiPDCXListener (method1, method2, method3, method4 -- these are the actual names) for more information about the different methods please refer to the integration guide.  For example if you are using method1 that means you are sending/receiving XML and therefore you will need to send and parse XML.  Here's sample javascript that shows parsing the response returned by the dsiPDCXListener into the context javascript object.
 
 ```
     function parseXmlFromDataCapXML(context) {
