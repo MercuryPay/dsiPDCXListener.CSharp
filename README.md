@@ -13,14 +13,19 @@ This repository demonstrates the ability to interact with local peripherals whil
 Please contact your IntegrationTeam member for any questions about the below prerequisites.
 
 * dsiPDCXListener installed and running
-* IPTranLT Mobile -- this is a hardware device.  With a few minor changes this example could also run without the IPTranLT Mobile.
-* A cash drawer, receipt printer, and peripheral device that will all attach to the IPTranLT Mobile.  As mentioned above with a few minor changes it is possible to execute this demo with only a peripheral device attached direclty to the computer.
+* IPTranLT Mobile -- this is a hardware device to which hardware peripherals can/will attach.
+* A cash drawer, receipt printer, and peripheral device that will all attach to the IPTranLT Mobile.
+* The code will also work with the dsiPDCXListener and a hardware device attached directly to the computer so if you do not have the IPTranLT Mobile and other hardware devices (cash drawern, receipt printer, etc.) you will still be able to see the functionality.
 
 ##Example Site
 
 An example site is hosted here:  http://durangopizza.azurewebsites.net.
 
 This site demonstrates the use of two DataCap technologies:  the dsiPDCXListener and the IPTranLT Mobile.  Visit the site using your favorite web browser and then click the 'Admin' link.  Enter the IP address and port where the dsiPDCXListener is running and then enter your TranDeviceID that you will find on the IPTranLT Mobile device.  Finally press the 'Update' button and then purchase some pizza.  The javascript will execute driving the pole display, peripheral device, receipt printer, and cash drawer for a full integrated payment experience.
+
+As an alternative you can modify the other fields on the Admin page to allow this example to work with the dsiPDCXListener and a hardware device attached directly to the computer.
+
+The azure website is active for 15 minutes and then after 15 minutes of no activity it will recyle and reset the Admin settings back to the default.
 
 ##Step 1: Display a payment page
 
