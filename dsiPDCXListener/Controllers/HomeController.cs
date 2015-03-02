@@ -32,11 +32,11 @@ namespace dsiPDCXListener.Controllers
             if (adminData != null && (adminData.ComPort != null || adminData.PostURL != null || adminData.PostURLMethod != null || adminData.SecureDevice != null && adminData.TranDeviceID != null || adminData.MerchantID != null))
             {
                 HttpContext.Application["TranDeviceID"] = (adminData.TranDeviceID == null) ? "" : adminData.TranDeviceID;
-                HttpContext.Application["PostURL"] = adminData.PostURL;
-                HttpContext.Application["PostURLMethod"] = adminData.PostURLMethod;
-                HttpContext.Application["ComPort"] = adminData.ComPort;
-                HttpContext.Application["SecureDevice"] = adminData.SecureDevice;
-                HttpContext.Application["MerchantID"] = adminData.MerchantID;
+                HttpContext.Application["PostURL"] = (adminData.PostURL == null) ? "" : adminData.PostURL;
+                HttpContext.Application["PostURLMethod"] = (adminData.PostURLMethod == null) ? "" : adminData.PostURLMethod;
+                HttpContext.Application["ComPort"] = (adminData.ComPort == null) ? "" : adminData.ComPort;
+                HttpContext.Application["SecureDevice"] = (adminData.SecureDevice == null) ? "" : adminData.SecureDevice;
+                HttpContext.Application["MerchantID"] = (adminData.MerchantID == null) ? "" : adminData.MerchantID;
                 HttpContext.Application["IncludeRecordNoAndFrequency"] = adminData.IncludeRecordNoAndFrequency;
 
                 return Redirect("/");
