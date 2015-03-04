@@ -1,6 +1,11 @@
 dsiPDCXListener.CSharp
 ==========
 
+* More documentation?  http://developer.mercurypay.com
+* Questions?  integrationteam@mercurypay.com
+* **Feature request?** Open an issue.
+* Feel like **contributing**?  Submit a pull request.
+* 
 ##Overview
 
 This repository demonstrates the ability to interact with local peripherals while hosting your POS application in the cloud.  There are two key attributes that facilitate this SAAS model:
