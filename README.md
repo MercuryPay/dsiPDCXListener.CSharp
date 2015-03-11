@@ -12,24 +12,24 @@ dsiPDCXListener.CSharp
 This repository demonstrates how to interact with locally installed peripherals while hosting your POS application in the cloud.  There are two key attributes that facilitate this SaaS model:
 
 * The dsiPDCXListener&trade; provides the ability to send http commands that drive peripheral devices.
-* JavaScript that makes the http calls to the dsiPDCXListener from the client's web browser.
+* JavaScript that makes the http calls to the dsiPDCXListener&trade; from the client's web browser.
 
 ##Prerequisites
 
 Please contact your Developer Integrations Analyst for any questions about the below prerequisites.
 
-* dsiPDCXListener installed and running
-* IPTranLT Mobile -- this is a hardware device to which hardware peripherals can/will attach.
-* A cash drawer, receipt printer, and peripheral device that will all attach to the IPTranLT Mobile.
-* The code will also work with the dsiPDCXListener and a hardware device attached directly to the computer so if you do not have the IPTranLT Mobile and other hardware devices (cash drawer, receipt printer, etc.) you will still be able to see the functionality.
+* dsiPDCXListener&trade; installed and running
+* IPTranLT&trade; Mobile -- this is a hardware device to which hardware peripherals can/will attach.
+* A cash drawer, receipt printer, and peripheral device that will all attach to the IPTranLT&trade; Mobile.
+* The code will also work with the dsiPDCXListener&trade; and a hardware device attached directly to the computer so if you do not have the IPTranLT&trade; Mobile and other hardware devices (cash drawer, receipt printer, etc.) you will still be able to see the functionality.
 
 ##Example Site
 
 An example site is hosted here:  <a href="http://durangopizza.azurewebsites.net" target="_blank">Durango Pizza Azure Website</a>
 
-This site demonstrates the use of two DataCap Systems Inc. technologies:  the dsiPDCXListener and the IPTranLT Mobile.  Visit the site using your favorite web browser and then click the 'Admin' link.  Enter the IP address and port where the dsiPDCXListener is running and then enter your TranDeviceID that you will find on the IPTranLT Mobile device.  Finally press the 'Update' button and then purchase some pizza.  The javascript will execute driving the pole display, peripheral device, receipt printer, and cash drawer for a full integrated payment experience.
+This site demonstrates the use of two DataCap Systems Inc. technologies:  the dsiPDCXListener&trade; and the IPTranLT&trade; Mobile.  Visit the site using your favorite web browser and then click the 'Admin' link.  Enter the IP address and port where the dsiPDCXListener&trade; is running and then enter your TranDeviceID that you will find on the IPTranLT&trade; Mobile device.  Finally press the 'Update' button and then purchase some pizza.  The JavaScript will execute driving the pole display, peripheral device, receipt printer, and cash drawer for a full integrated payment experience.
 
-As an alternative you can modify the other fields on the Admin page to allow this example to work with the dsiPDCXListener and a hardware device attached directly to the computer.
+As an alternative you can modify the other fields on the Admin page to allow this example to work with the dsiPDCXListener&trade; and a hardware device attached directly to the computer.
 
 The Azure website is active for 15 minutes and then after 15 minutes of no activity it will recycle and reset the Admin settings back to the default.
 
@@ -54,7 +54,7 @@ In our case the payment page is fairly simple.  It contains an amount text box, 
 
 ##Step 2:Capture submit event and POST to dsiPDCXListener
 
-When the user presses the 'Pay' button above we capture the event in javascript and initiate the process of sending transactions by posting to the dsiPDCXListener via JavaScript.  You will see in the code (the Pizza.cshtml page) that the process function kicks off the process and a context object provides state data for all of the JavaScript functions.  The postData function is actually where the data is posted to the dsiPDCXListener.
+When the user presses the 'Pay' button above we capture the event in JavaScript and initiate the process of sending transactions by posting to the dsiPDCXListener&trade; via JavaScript.  You will see in the code (the Pizza.cshtml page) that the process function kicks off the process and a context object provides state data for all of the JavaScript functions.  The postData function is actually where the data is posted to the dsiPDCXListener&trade;.
 
 You can see below that the url is included in the context object as is the actual data to post.  The data is configurable on the hosted (server) side and then written to the context object at runtime.
 
@@ -78,7 +78,7 @@ function postData(context) {
 }
 ```
 
-The data that is POSTed to the dsiPDCXListener is familiar XML with a few modifications.  The XML below is used to write to the PoleDisplay.  The {0} is filled in at runtime by the TranDeviceID configured in the Admin screen mentioned above.  The {1} is filled in at runtime with the list of data to write to the PoleDisplay and looks like:  <Line1>.Write to Pole Display</Line1>.  You can write multiple lines to the PoleDisplay via additional <Line#> elements.
+The data that is POSTed to the dsiPDCXListener&trade; is familiar XML with a few modifications.  The XML below is used to write to the PoleDisplay.  The {0} is filled in at runtime by the TranDeviceID configured in the Admin screen mentioned above.  The {1} is filled in at runtime with the list of data to write to the PoleDisplay and looks like:  <Line1>.Write to Pole Display</Line1>.  You can write multiple lines to the PoleDisplay via additional <Line#> elements.
 
 ```
 <?xml version=\"1.0\"?>
@@ -96,7 +96,7 @@ The data that is POSTed to the dsiPDCXListener is familiar XML with a few modifi
 
 ##Step 3: Parse Response
 
-The parsing mechanism will change depending on which dsiPDCXListener method you use.  There are four differnt methods supported by the dsiPDCXListener (method1, method2, method3, method4 -- these are the actual names) for more information about the different methods please refer to the integration guide.  For example if you are using method1 that means you are sending/receiving XML and therefore you will need to send and parse XML.  Here's sample JavaScript that shows parsing the response returned by the dsiPDCXListener into the context JavaScript object.
+The parsing mechanism will change depending on which dsiPDCXListener&trade; method you use.  There are four differnt methods supported by the dsiPDCXListener&trade; (method1, method2, method3, method4 -- these are the actual names) for more information about the different methods please refer to the integration guide.  For example if you are using method1 that means you are sending/receiving XML and therefore you will need to send and parse XML.  Here's sample JavaScript that shows parsing the response returned by the dsiPDCXListener&trade; into the context JavaScript object.
 
 ```
     function parseXmlFromDataCapXML(context) {
