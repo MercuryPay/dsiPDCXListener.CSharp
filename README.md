@@ -27,7 +27,7 @@ Please contact your Developer Integrations Analyst for any questions about the b
 
 An example site is hosted here:  <a href="http://durangopizza.azurewebsites.net" target="_blank">Durango Pizza Azure Website</a>
 
-This site demonstrates the use of two DataCap Systems Inc. technologies:  the dsiPDCXListener&trade; and the IPTranLT&trade; Mobile.  Visit the site using your favorite web browser and then click the 'Admin' link.  Enter the IP address and port where the dsiPDCXListener&trade; is running and then enter your TranDeviceID that you will find on the IPTranLT&trade; Mobile device.  Finally press the 'Update' button and then purchase some pizza.  The JavaScript will execute driving the pole display, peripheral device, receipt printer, and cash drawer for a full integrated payment experience.
+This site demonstrates the use of two Datacap Systems Inc. technologies:  the dsiPDCXListener&trade; and the IPTranLT&trade; Mobile.  Visit the site using your favorite web browser and then click the 'Admin' link.  Enter the IP address and port where the dsiPDCXListener&trade; is running and then enter your TranDeviceID that you will find on the IPTranLT&trade; Mobile device.  Finally press the 'Update' button and then purchase some pizza.  The JavaScript will execute driving the pole display, peripheral device, receipt printer, and cash drawer for a full integrated payment experience.
 
 As an alternative you can modify the other fields on the Admin page to allow this example to work with the dsiPDCXListener&trade; and a hardware device attached directly to the computer.
 
@@ -96,7 +96,7 @@ The data that is POSTed to the dsiPDCXListener&trade; is familiar XML with a few
 
 ##Step 3: Parse Response
 
-The parsing mechanism will change depending on which dsiPDCXListener&trade; method you use.  There are four differnt methods supported by the dsiPDCXListener&trade; (method1, method2, method3, method4 -- these are the actual names) for more information about the different methods please refer to the integration guide.  For example if you are using method1 that means you are sending/receiving XML and therefore you will need to send and parse XML.  Here's sample JavaScript that shows parsing the response returned by the dsiPDCXListener&trade; into the context JavaScript object.
+The parsing mechanism will change depending on which dsiPDCXListener&trade; method you use.  There are four differnt methods supported by the dsiPDCXListener&trade; (method1, method2, method3, method4 -- these are the actual names).  For more information about the different methods please refer to the integration guide.  For example if you are using method1 that means you are sending/receiving XML and therefore you will need to send and parse XML.  Here's sample JavaScript that shows parsing the response returned by the dsiPDCXListener&trade; into the context JavaScript object.
 
 ```
     function parseXmlFromDataCapXML(context) {
