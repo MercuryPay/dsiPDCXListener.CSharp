@@ -11,18 +11,18 @@ dsiPDCXListener.CSharp
 
 This repository demonstrates how a cloud based Software as a Service (SaaS) POS application can be designed to interact with locally installed peripherals using components supplied by Datacap System, Inc.  Two key attributes facilitate this SaaS model:
 
-* Datacap Systems' dsiPDCXListener&trade; provides the ability to send http commands that drive peripheral devices.
-* JavaScript that makes the http calls to the dsiPDCXListener&trade; from the client's web browser.
+* Datacap Systems' dsiPDCXListener&trade; or the IPTran LT&trade; Mobile provide the ability to send http commands that drive peripheral devices.
+* JavaScript that makes the http calls to the dsiPDCXListener&trade; or the IPTran LT&trade; Mobile from the client's web browser.
 
 ##Prerequisites
 
 Please contact your Developer Integrations Analyst for any questions about the below prerequisites.  Details are also outlined in our integration guide.
 
-* dsiPDCXListener&trade; installed and running
-* IPTran LT&trade; Mobile -- this is a hardware device to which hardware peripherals are attached.
+* dsiPDCXListener&trade; installed and running or...
+* IPTran LT&trade; Mobile -- this is a hardware device to which hardware peripherals are attached or...
 * PaymentsDrawer&trade; Bundle -- a cash drawer, receipt printer, and peripheral device with the IPTran LT&trade; Mobile mounted inside of the cash drawer.
 
-The code will also work with the dsiPDCXListener&trade; and a hardware device attached directly to the computer so if you do not have the IPTran LT&trade; Mobile and other hardware devices (cash drawer, receipt printer, etc.) you will still be able to see the functionality.
+The code will also work with the dsiPDCXListener&trade; and a hardware device attached directly to the computer so if you do not have the IPTran LT&trade; Mobile and other hardware devices (cash drawer, receipt printer, etc.) you will still be able to test the functionality.
 
 ##Example Site
 
