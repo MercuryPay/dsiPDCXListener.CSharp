@@ -19,7 +19,7 @@ This repository demonstrates how a cloud based Software as a Service (SaaS) POS 
 Please contact your Developer Integrations Analyst for any questions about the below prerequisites.  Details are also outlined in our integration guide.
 
 * dsiPDCXListener&trade; installed and running
-* IPTran LT&trade; Mobile -- this is a hardware device to which hardware peripherals can/will attach.
+* IPTran LT&trade; Mobile -- this is a hardware device to which hardware peripherals are attached.
 * PaymentsDrawer&trade; Bundle -- a cash drawer, receipt printer, and peripheral device with the IPTran LT&trade; Mobile mounted inside of the cash drawer.
 
 The code will also work with the dsiPDCXListener&trade; and a hardware device attached directly to the computer so if you do not have the IPTran LT&trade; Mobile and other hardware devices (cash drawer, receipt printer, etc.) you will still be able to see the functionality.
@@ -95,7 +95,7 @@ The data that is POSTed to the dsiPDCXListener&trade; is familiar XML with a few
 
 ##Step 3: Parse Response
 
-The parsing mechanism changes depending on which dsiPDCXListener&trade; method you use.  There are four methods creatively named ('method1', 'method2', 'method3', 'method4').  Details on the different methods are outlined in the integration guide.  For example using method1 means you are sending/receiving XML and therefore you need to send and parse XML.  Here is a JavaScript sample that shows parsing the response returned by the dsiPDCXListener&trade; into the context JavaScript object.
+The parsing mechanism changes depending on which dsiPDCXListener&trade; method you use.  There are four methods creatively named:  'method1', 'method2', 'method3', 'method4'.  Details on the different methods are outlined in the integration guide.  For example using method1 means you are sending/receiving XML and therefore you need to send and parse XML.  Here is a JavaScript sample that shows parsing the response returned by the dsiPDCXListener&trade; into the context JavaScript object.
 
 ```
     function parseXmlFromDataCapXML(context) {
