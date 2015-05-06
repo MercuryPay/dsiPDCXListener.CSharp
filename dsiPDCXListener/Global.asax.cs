@@ -26,6 +26,7 @@ namespace dsiPDCXListener
             Application["SecureDevice"] = config.SecureDevice;
             Application["MerchantID"] = config.MerchantID;
             Application["IncludeRecordNoAndFrequency"] = false;
+            Application["IncludeAlerts"] = true;
 
         }
     }

@@ -30,6 +30,7 @@ namespace dsiPDCXListener.Models
         public string ComPort { get; set; }
         public string SecureDevice { get; set; }
         public string IncludeRecordNoAndFrequency { get; set; }
+        public string IncludeAlerts { get; set; }
 
     }
 }

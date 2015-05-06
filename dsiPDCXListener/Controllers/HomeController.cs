@@ -38,6 +38,7 @@ namespace dsiPDCXListener.Controllers
                 HttpContext.Application["SecureDevice"] = (adminData.SecureDevice == null) ? "" : adminData.SecureDevice;
                 HttpContext.Application["MerchantID"] = (adminData.MerchantID == null) ? "" : adminData.MerchantID;
                 HttpContext.Application["IncludeRecordNoAndFrequency"] = adminData.IncludeRecordNoAndFrequency;
+                HttpContext.Application["IncludeAlerts"] = adminData.IncludeAlerts;
 
                 return Redirect("/");
             }
@@ -51,6 +52,7 @@ namespace dsiPDCXListener.Controllers
                 theAdminData.SecureDevice = HttpContext.Application["SecureDevice"].ToString();
                 theAdminData.MerchantID = HttpContext.Application["MerchantID"].ToString();
                 theAdminData.IncludeRecordNoAndFrequency = (bool)(HttpContext.Application["IncludeRecordNoAndFrequency"]);
+                theAdminData.IncludeAlerts = (bool)(HttpContext.Application["IncludeAlerts"]);
 
                 return View(theAdminData);
             }
@@ -72,7 +74,9 @@ namespace dsiPDCXListener.Controllers
             configData.PostURLMethod = HttpContext.Application["PostURLMethod"].ToString();
             configData.ComPort = HttpContext.Application["ComPort"].ToString();
             configData.SecureDevice = HttpContext.Application["SecureDevice"].ToString();
-            configData.MerchantID = HttpContext.Application["MerchantID"].ToString();         
+            configData.MerchantID = HttpContext.Application["MerchantID"].ToString();
+
+            configData.IncludeAlerts = HttpContext.Application["IncludeAlerts"].ToString();
 
             if (configData.PostURLMethod == "method1")
             {
@@ -92,6 +96,7 @@ namespace dsiPDCXListener.Controllers
                 {
                     configData.IncludeRecordNoAndFrequency = string.Empty;
                 }
+
             }
             else
             {
@@ -111,6 +116,7 @@ namespace dsiPDCXListener.Controllers
                 {
                     configData.IncludeRecordNoAndFrequency = string.Empty;
                 }
+
             }
  
             return View(configData);

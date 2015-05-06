@@ -14,5 +14,6 @@ namespace dsiPDCXListener.Models
         public string SecureDevice { get; set; }
         public string MerchantID { get; set; }
         public bool IncludeRecordNoAndFrequency { get; set; }
+        public bool IncludeAlerts { get; set; }
     }
 }

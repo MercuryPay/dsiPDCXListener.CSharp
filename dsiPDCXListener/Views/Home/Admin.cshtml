@@ -59,6 +59,13 @@
         <div class="editor-field">
             @Html.TextBoxFor(model => model.IncludeRecordNoAndFrequency)
         </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.IncludeAlerts)
+        </div>
+        <div class="editor-field">
+            @Html.TextBoxFor(model => model.IncludeAlerts)
+        </div>
     </fieldset>
     <input type="submit" value="Update" />
 }

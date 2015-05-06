@@ -169,7 +169,9 @@
     }
 
     function postData(context) {
-        alert(context.data);
+        if (context.includeAlerts) {
+            alert(context.data);
+        }
 
         var posting = $.ajax({
             type: "POST",
@@ -213,7 +215,9 @@
 
     function processSale(context) {
         if (context.step == null) {
-            alert('do peripheral work');
+            if (context.includeAlerts) {
+                alert('do peripheral work');
+            }
             doSale(context, true);
         } else if (context.step == 1) {
             context = parseReturnData(context);
@@ -226,23 +230,31 @@
 
     function process(context) {
         if (context.step == null) {
-            alert('clear pole display');
+            if (context.includeAlerts) {
+                alert('clear pole display');
+            }
             printPoleDisplay(context); //clear display
         }
         else if (context.step == 1) {
-            alert('print total amount due');
+            if (context.includeAlerts) {
+                alert('print total amount due');
+            }
             context.listOfStrings = [".Total Amount Due", "." + context.amount.toString()];
             printPoleDisplay(context); //print amount tendered
         }
         else if (context.step == 2) {
-            alert('do peripheral work');
+            if (context.includeAlerts) {
+                alert('do peripheral work');
+            }
             doSale(context, false);
         }
         else if (context.step == 3) {
             context = parseReturnData(context);
             context.paymentData = getPaymentData(context);
             
-            alert('print approved/declined');
+            if (context.includeAlerts) {
+                alert('print approved/declined');
+            }
             var amt = "." + context.amount.toString();
 
             if (context.CmdStatus == 'Approved') {
@@ -255,7 +267,9 @@
             printPoleDisplay(context); //print approved or declined to pole display
         }
         else if (context.step == 4) {
-            alert('print receipt');
+            if (context.includeAlerts) {
+                alert('print receipt');
+            }
             var amt = ".Amount:" + context.amount.toString();
             var merchantName = "." + context.merchantName;
             var merchantAddress = "." + context.merchantAddress;
@@ -268,12 +282,16 @@
             printReceipt(context); //print receipt
         }
         else if (context.step == 5) {
-            alert('print have a nice day to pole display');
+            if (context.includeAlerts) {
+                alert('print have a nice day to pole display');
+            }
             context.listOfStrings = [".Have a great day!"];
             printPoleDisplay(context); //print have a good day
         }
         else if (context.step == 6) {
-            alert('open cash drawer');
+            if (context.includeAlerts) {
+                alert('open cash drawer');
+            }
             doCashDrawer(context); //open cash drawer
         }
         else if (context.step == 7) {
@@ -307,6 +325,7 @@
         context.cashDrawerMessage = '@Html.Raw(Model.CashDrawerMessage)';
         context.saleMessage = '@Html.Raw(Model.SaleMessage)';
         context.contentType = '@Html.Raw(Model.ContentType)';
+        context.includeAlerts = ('true' == '@Html.Raw(Model.IncludeAlerts.ToLower())');
 
         if (context.tranDeviceId == '') {
             processSale(context);
